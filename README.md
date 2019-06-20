@@ -15,8 +15,8 @@ docker-compose up -d
 
 ### todo
 
-[] todo-01: docker mysql 구동할 때 초기 db 데이터 적재하기
-[x] todo-02: mybatis underscore to camelcase
+* [ ] todo-01: docker mysql 구동할 때 초기 db 데이터 적재하기
+* [x] todo-02: mybatis underscore to camelcase
 
 
 
