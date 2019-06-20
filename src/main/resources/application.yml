@@ -16,10 +16,8 @@ spring:
       driver-class-name: com.mysql.jdbc.Driver
       validation-query: 'SELECT 1'
 
-mybatis:
+#mybatis:
 #  config-location: sql/mybatis-config.xml
-  configuration:
-    map-underscore-to-camel-case: true
 
 logging:
   level:

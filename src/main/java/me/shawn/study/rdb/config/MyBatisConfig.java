@@ -34,7 +34,7 @@ public class MyBatisConfig {
     public SqlSessionFactoryBean localSqlSessionFactory(DataSource dataSource) throws IOException {
         SqlSessionFactoryBean sessionFactory = new SqlSessionFactoryBean();
         sessionFactory.setDataSource(dataSource);
-//        sessionFactory.setConfigLocation(applicationContext.getResource("classpath:sql/mybatis-config.xml"));
+        sessionFactory.setConfigLocation(applicationContext.getResource("classpath:sql/mybatis-config.xml"));
         sessionFactory.setMapperLocations(applicationContext.getResources("classpath:sql/mapper/*-mapper.xml"));
         sessionFactory.setTypeAliasesPackage("me.shawn.study.rdb.model");
         return sessionFactory;
