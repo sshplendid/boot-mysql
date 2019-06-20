@@ -1,0 +1,26 @@
+spring:
+  profiles:
+    active: local
+  multi-datasources:
+    h2:
+      jdbc-url: jdbc:h2:mem:test
+      username: study
+      password:
+      driver-class-name: org.h2.Driver
+      validation-query: 'SELECT 1'
+      data: schema.sql
+    local:
+      jdbc-url: jdbc:mysql://localhost:3306/study
+      username: studyuser
+      password: study1
+      driver-class-name: com.mysql.jdbc.Driver
+      validation-query: 'SELECT 1'
+
+mybatis:
+#  config-location: sql/mybatis-config.xml
+  configuration:
+    map-underscore-to-camel-case: true
+
+logging:
+  level:
+    me.shawn.study.rdb.mapper: TRACE

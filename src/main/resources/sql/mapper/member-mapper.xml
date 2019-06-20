@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="me.shawn.study.rdb.mapper.MemberMapper">
+
+    <select id="selectMemberById" resultType="member">
+        SELECT
+            id, name, phone_number, email, age
+        WHERE id = #{id}
+    </select>
+
+    <select id="selectAllMembers" resultType="member">
+        select
+            id, name, phone_number, email, age
+        from MEMBER
+    </select>
+    
+    <select id="selectMembersByCondition" resultType="member">
+        select
+        id, name, phone_number, email, age
+        from MEMBER
+        where 1=1
+        <if test="name != null and name != ''">
+            and name = #{name}
+        </if>
+        <if test="age != null and age != ''">
+            and age = #{age}
+        </if>
+    </select>
+    
+    <insert id="insertMember">
+        INSERT INTO MEMBER (name, phone_number, email, age)
+        VALUES (#{name}, #{phoneNumber}, #{email}, #{age})
+    </insert>
+
+</mapper>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>member</title>
+    </head>
+    <body>
+        <h1>Member</h1>
+        <div id="search">
+            <input name="name" placeholder="이름" />
+            <input name="age" type="number" placeholder="나이" />
+            <input name="searchBtn" type="button" value="조회" />
+            <input name="testBtn" type="button" value="test" />
+        </div>
+        <div id="result">
+            <table>
+                <thead>
+                    <th>#</th>
+                    <th>ID</th>
+                    <th>이름</th>
+                    <th>전화번호</th>
+                    <th>이메일</th>
+                    <th>나이</th>
+                </thead>
+                <tbody id="resultBody">
+
+                </tbody>
+            </table>
+        </div>
+        <script>
+            function getTableRow(order, data) {
+                const template = `<tr><td>${order}</td><td>${data.id}</td><td>${data.name}</td><td>${data.phoneNumber}</td><td>${data.email}</td><td>${data.age}</td></tr>`;
+
+                return template;
+            }
+
+            function addMemberToTable(member) {
+                var resultBody = document.querySelector('#resultBody');
+                var order = ++resultBody.rows.length;
+                resultBody.innerHTML += getTableRow(order, member);
+            }
+
+            function test() {
+                var o = {};
+                o.id = 1;
+                o.name = 'foo';
+                o.email = 'foo@bar.net';
+                o.phoneNumber = '1112223333';
+                o.age = 20;
+
+                return o;
+            }
+
+            function getCondition() {
+                var _name = document.querySelector('input[name=name]').value;
+                var _age = document.querySelector('input[name=age]').value;
+
+                var query = {};
+                if(isNotEmpty(_name)) query.name = _name;
+                if(isNotEmpty(_age)) query.age = _age;
+
+                return Object.keys(query).map(key => `${key}=${query[key]}`).reduce((a, b) => `${a}&${b}`, '?');
+            }
+
+            function isNotEmpty(val) {
+                return val != null && val != undefined && val != '' ? true:false;
+            }
+
+            function fetchMembers() {
+                fetch('/members' +  getCondition()).then(res => {
+                    console.log(res);
+                    res.json().then(json => {
+                        if(Object.keys(json).length > 0) {
+                            clearResultBody();
+                        } else {
+                            alert('no result');
+                            return;
+                        }
+                        json.forEach(m => {
+                            addMemberToTable(m);
+                        });
+                    });
+                });
+            }
+
+            function clearResultBody() {
+                var resultBody = document.querySelector('#resultBody');
+                resultBody.innerHTML = '';
+            }
+
+            document.querySelector('input[name=testBtn]').onclick = () => addMemberToTable(test());
+            document.querySelector('input[name=searchBtn]').onclick = () => fetchMembers();
+        </script>
+    </body>
+</html>
