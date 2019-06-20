@@ -15,8 +15,11 @@ docker-compose up -d
 
 ### todo
 
-* [ ] todo-01: docker mysql 구동할 때 초기 db 데이터 적재하기
+* [x] todo-01: docker mysql 구동할 때 초기 db 데이터 적재하기
 * [x] todo-02: mybatis underscore to camelcase
+* [ ] todo-03: 멤버 등록 폼 작성
+* [ ] todo-04: 데이터 CUD 기능 개발
+* [ ] todo-05: 테이블 행 클릭시 단건 조회
 
 
 
