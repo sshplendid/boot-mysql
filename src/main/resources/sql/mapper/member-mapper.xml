@@ -8,6 +8,7 @@
     <select id="selectMemberById" resultType="member">
         SELECT
             id, name, phone_number, email, age
+        FROM MEMBER
         WHERE id = #{id}
     </select>
 
@@ -30,7 +31,7 @@
         </if>
     </select>
     
-    <insert id="insertMember">
+    <insert id="insertMember" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO MEMBER (name, phone_number, email, age)
         VALUES (#{name}, #{phoneNumber}, #{email}, #{age})
     </insert>

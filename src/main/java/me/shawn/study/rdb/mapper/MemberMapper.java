@@ -10,5 +10,5 @@ public interface MemberMapper {
     Member selectMemberById(Long id);
     List<Member> selectAllMembers();
     List<Member> selectMembersByCondition(Member condition);
-    void insertMember(Member member);
+    Long insertMember(Member member);
 }

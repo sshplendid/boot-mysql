@@ -15,7 +15,7 @@ public class MemberController {
     private MemberService memberService;
 
     @Autowired
-    ModelMapper modelMapper;
+    private ModelMapper modelMapper;
 
     public MemberController(MemberService memberService) {
         this.memberService = memberService;
@@ -39,7 +39,7 @@ public class MemberController {
     }
 
     @PostMapping
-    public Member addMember(Member memberDto) {
+    public Member addMember(@RequestBody Member memberDto) {
         return memberService.addMember(memberDto);
     }
 }
